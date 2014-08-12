@@ -1,5 +1,5 @@
-vxcsv2quakeml
-=============
+earthquake-catalog-ushis
+========================
 
 This project contains code to convert the "USHIS" catalog to Quakeml format.
 
