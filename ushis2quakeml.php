@@ -28,6 +28,44 @@ function romanNumeral($num) {
 	return $romans[$num];
 }
 
+function sortMagnitudesPreferredFirst($a, $b) {
+	$aType = strtoupper($a['type']);
+	$bType = strtoupper($b['type']);
+	$aMag = $a['magnitude'];
+	$bMag = $b['magnitude'];
+
+	// largest Mw
+	$aMw = ($aType === 'MW');
+	$bMw = ($bType === 'MW');
+	if ($aMw && !$bMw) {
+		return -1;
+	} else if ($bMw && !$aMw) {
+		return 1;
+	} else if ($aMw && $bMw) {
+		return $bMag - $aMag;
+	}
+
+	// largest Mb or Ms
+	$aMsMb = ($aType === 'MB' || $aType === 'MS');
+	$bMsMb = ($bType === 'MB' || $bType === 'MS');
+	if ($aMsMb && !$bMsMb) {
+		return -1;
+	} else if ($bMsMb && !$aMsMb) {
+		return 1;
+	} else if ($aMsMb && $bMsMb) {
+		return $bMag - $aMag;
+	}
+
+	// move "felt area" mags to end
+	if ($aType === 'FA' && $bType !== 'FA') {
+		return 1;
+	} else if ($bType === 'FA' && $aType !== 'FA') {
+		return -1;
+	}
+
+	// largest first
+	return $bMag - $aMag;
+}
 
 function getQuakeml($line) {
 	static $eventCodeSequence = 1;
@@ -98,7 +136,7 @@ function getQuakeml($line) {
 			'type' => 'Ms',
 			'id' => $magnitudePublicIDBase . '/Ms');
 	}
-
+	usort($magnitudes, "sortMagnitudesPreferredFirst");
 
 	$q = '<?xml version="1.0" ?>
 <q:quakeml xmlns="http://quakeml.org/xmlns/bed/1.2"' .
@@ -163,7 +201,7 @@ function getQuakeml($line) {
 
 	$preferredMagnitudeID = null;
 	foreach ($magnitudes as $mag) {
-		if ($preferredMagnitudeID !== null) {
+		if ($preferredMagnitudeID === null) {
 			$preferredMagnitudeID = $mag['id'];
 			$q .= '
 			<preferredMagnitudeID>' . $preferredMagnitudeID . '</preferredMagnitudeID>';
