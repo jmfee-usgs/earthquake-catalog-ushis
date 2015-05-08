@@ -1,4 +1,4 @@
-# SRA CATALOG OF EARTHQUAKES IN THE EASTERN, CENTRAL, AND MOUNTAIN STATES OF THE UNITED STATES, 1568 - 1986
+# SRA: Seismicity of the Eastern, Central, and Mountain States of the United States, 1568 - 1986
 
 ‘SRA’ comes from the last names of the principal
 compilers, C.W. Stover, B.G. Reagor, and S.T. Algermissen. For U.S. states east
@@ -33,3 +33,5 @@ the map and compilation of the database.
 
 ## Usage
 ```cat sra.csv | php sra2quakeml.php```
+
+Generated quakeml files are output to the directory `outputdir`.

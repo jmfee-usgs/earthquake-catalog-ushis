@@ -1,4 +1,4 @@
-# USHIS
+# USHIS: Seismicity of the United States, 1568 – 1989
 
 USHIS is a catalog of moderate and large earthquakes in the United States, from
 1638-1989.  This catalog is from the publication of Stover, C.W. and Coffman,
