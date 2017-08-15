@@ -1,0 +1,28 @@
+{
+  "name": "earthquake-catalog-ushis",
+  "organization": "U.S. Geological Survey",
+  "description": "Quakeml converter for two historic earthquake catalogs",
+
+  "openSourceProject": 1,
+  "license": "https://github.com/usgs/earthquake-catalog-ushis/blob/master/LICENSE.md",
+  "vcs": "git",
+  "repository": "https://github.com/usgs/earthquake-catalog-ushis.git",
+
+  "tags": [
+    "earthquake",
+    "sra",
+    "usgs",
+    "ushis"
+  ],
+  "languages": [
+    "php"
+  ],
+
+  "contact": {
+    "name": "Jeremy Fee",
+    "email": "jmfee@usgs.gov"
+  },
+  "updated": {
+    "metadataLastUpdated": "2017-08-15"
+  }
+}
